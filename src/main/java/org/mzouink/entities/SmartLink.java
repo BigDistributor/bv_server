@@ -14,7 +14,7 @@ public class SmartLink {
         this.ts = String.valueOf(System.currentTimeMillis());
     }
 
-    static String generateID() {
+    public static String generateID() {
         return RandomStringUtils.random(4, true, true);
     }
 

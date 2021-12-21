@@ -1,6 +1,4 @@
-package org.mzouink;
-
-import org.mzouink.entities.SmartLink;
+package org.mzouink.entities;
 
 public class HistorySmartLink extends SmartLink {
     private final long tsUse;

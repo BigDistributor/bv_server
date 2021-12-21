@@ -1,7 +1,8 @@
-package org.mzouink.entities;
+package org.mzouink;
 
 
-import org.mzouink.HistorySmartLink;
+import org.mzouink.entities.HistorySmartLink;
+import org.mzouink.entities.SmartLink;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
