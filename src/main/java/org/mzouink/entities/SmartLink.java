@@ -1,5 +1,6 @@
 package org.mzouink.entities;
 
+import com.google.gson.Gson;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class SmartLink {
@@ -34,5 +35,12 @@ public class SmartLink {
         return ts;
     }
 
+    @Override
+    public String toString() {
+        return  new Gson().toJson(this);
+    }
 
+    public static SmartLink fromJson(String json){
+        return new Gson().fromJson(json,SmartLink.class);
+    }
 }

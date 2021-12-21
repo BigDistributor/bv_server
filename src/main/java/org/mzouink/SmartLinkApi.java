@@ -4,9 +4,12 @@ package org.mzouink;
 import org.mzouink.entities.HistorySmartLink;
 import org.mzouink.entities.SmartLink;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
@@ -18,24 +21,25 @@ public class SmartLinkApi {
     public static Map<String, HistorySmartLink> historyLinks = new HashMap<>();
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
     @Path("get")
-    public Response get(String id){
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Response get(@QueryParam("id") String id){
         if(currentLinks.containsKey(id)){
             SmartLink link = currentLinks.get(id);
         historyLinks.put(id,new HistorySmartLink(link));
         currentLinks.remove(id);
-        return Response.ok(link.getID()).build();
+        return Response.ok(link.getJson()).build();
         }
         else{
-            //TODO change by error
-            return Response.ok().build();
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
 
 
-    @GET
+    @POST
     @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.TEXT_PLAIN)
     @Path("create")
     public Response create(String json){
         String id = SmartLink.generateID();
