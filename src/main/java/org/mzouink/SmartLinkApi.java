@@ -42,7 +42,7 @@ public class SmartLinkApi {
     @Consumes(MediaType.TEXT_PLAIN)
     @Path("create")
     public Response create(String json){
-        String id = SmartLink.generateID();
+        String id = SmartLink.generateID().toUpperCase();
         while(currentLinks.containsKey(id)){
             id = SmartLink.generateID();
         }
